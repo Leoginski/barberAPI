@@ -18,6 +18,7 @@ namespace The.Barber.Api.Models
         public string Bairro { get; set; }
         public string Cep { get; set; }
         public int CidadesIdCidade { get; set; }
+        public string Cpf { get; set; }
 
         public Cidade CidadesIdCidadeNavigation { get; set; }
         public ICollection<Agendamento> Agendamento { get; set; }

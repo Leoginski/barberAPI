@@ -7,12 +7,11 @@ namespace The.Barber.Api.Data
 {
     public partial class mydbContext : DbContext
     {
-
-
         public mydbContext(DbContextOptions<mydbContext> options)
         {
             //super(options);
         }
+
         public virtual DbSet<Agendamento> Agendamento { get; set; }
         public virtual DbSet<Avaliacao> Avaliacao { get; set; }
         public virtual DbSet<Barbearia> Barbearia { get; set; }
@@ -28,6 +27,7 @@ namespace The.Barber.Api.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseMySql("Server=localhost;User Id=root;Password=;Database=mydb");
             }
         }
@@ -82,7 +82,8 @@ namespace The.Barber.Api.Data
 
                 entity.Property(e => e.IdAvaliacao)
                     .HasColumnName("id_avaliacao")
-                    .HasColumnType("int(11)");
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.AgendamentoClienteIdCliente)
                     .HasColumnName("agendamento_cliente_id_cliente")
@@ -120,9 +121,17 @@ namespace The.Barber.Api.Data
                     .HasColumnName("id_barbearia")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.Bairro).HasMaxLength(45);
+
                 entity.Property(e => e.CidadesIdCidade)
                     .HasColumnName("cidades_id_cidade")
                     .HasColumnType("int(11)");
+
+                entity.Property(e => e.Cnpj)
+                    .HasColumnName("cnpj")
+                    .HasMaxLength(14);
+
+                entity.Property(e => e.Complemento).HasMaxLength(45);
 
                 entity.Property(e => e.Logradouro)
                     .HasColumnName("logradouro")
@@ -152,6 +161,18 @@ namespace The.Barber.Api.Data
                 entity.Property(e => e.IdBarbeiro)
                     .HasColumnName("id_barbeiro")
                     .HasColumnType("int(11)");
+
+                entity.Property(e => e.Bairro).HasMaxLength(45);
+
+                entity.Property(e => e.Barbeirocol)
+                    .HasColumnName("barbeirocol")
+                    .HasMaxLength(45);
+
+                entity.Property(e => e.Complemento).HasMaxLength(45);
+
+                entity.Property(e => e.Cpf)
+                    .HasColumnName("cpf")
+                    .HasMaxLength(11);
 
                 entity.Property(e => e.Logradouro)
                     .HasColumnName("logradouro")
@@ -218,6 +239,10 @@ namespace The.Barber.Api.Data
                 entity.Property(e => e.CidadesIdCidade)
                     .HasColumnName("cidades_id_cidade")
                     .HasColumnType("int(11)");
+
+                entity.Property(e => e.Cpf)
+                    .HasColumnName("cpf")
+                    .HasMaxLength(11);
 
                 entity.Property(e => e.Email)
                     .HasColumnName("email")
