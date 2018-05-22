@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace The.Barber.Api.Models
 {
@@ -13,11 +14,21 @@ namespace The.Barber.Api.Models
         }
 
         public int IdBarbeiro { get; set; }
+
+        [Required]
         public string Nome { get; set; }
+
+        [Required]
         public string Logradouro { get; set; }
+
         public int? Numero { get; set; }
+
         public string Complemento { get; set; }
+
+        [Required]
         public string Bairro { get; set; }
+
+        [Required]
         public string Cpf { get; set; }
         public string Barbeirocol { get; set; }
 
