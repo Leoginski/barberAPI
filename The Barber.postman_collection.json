@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "21e6f27b-cb76-4fe1-9c40-0685685dceaa",
+		"name": "The Barber",
+		"description": "Test project for API the Barber",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "request_Barbeiro",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\" : \"sdadssdadsaasd\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:50835/api/Barbeiro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50835",
+					"path": [
+						"api",
+						"Barbeiro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validateObrigatoryFields",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:50835/api/Barbeiro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50835",
+					"path": [
+						"api",
+						"Barbeiro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "include_Barbeiro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d36c10ee-97c8-4fa8-9ce5-9c09ad33d8f7",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n\t\"nome\": \"matheus\",\n\t\"logradouro\": \"Rua prof severino\",\n\t\"numero\": 123,\n\t\"complemento\": \"apt 302\",\n\t\"bairro\": \"nova era\",\n\t\"cpf\": \"12398909860\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:50835/api/Barbeiro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50835",
+					"path": [
+						"api",
+						"Barbeiro"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
