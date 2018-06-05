@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace The.Barber.Api.Models
 {
@@ -9,9 +10,11 @@ namespace The.Barber.Api.Models
         {
             Cidade = new HashSet<Cidade>();
         }
-
+        [Required]
         public int IdEstado { get; set; }
+        [Required]
         public string Uf { get; set; }
+        [Required]
         public string Nome { get; set; }
 
         public ICollection<Cidade> Cidade { get; set; }
