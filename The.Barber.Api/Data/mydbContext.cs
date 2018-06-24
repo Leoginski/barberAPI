@@ -1,13 +1,14 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using The.Barber.Api.Models;
 
 namespace The.Barber.Api.Data
 {
-    public partial class mydbContext : DbContext
+    public partial class mydbContext : IdentityDbContext<Usuario>
     {
-        public mydbContext(DbContextOptions<mydbContext> options)
+        public mydbContext(DbContextOptions<mydbContext> options) : base(options)
         {
             //super(options);
         }
@@ -27,13 +28,13 @@ namespace The.Barber.Api.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseMySql("Server=localhost;User Id=root;Password=;Database=mydb");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Agendamento>(entity =>
             {
                 entity.HasKey(e => new { e.ClienteIdCliente, e.BarbeiroIdBarbeiro });

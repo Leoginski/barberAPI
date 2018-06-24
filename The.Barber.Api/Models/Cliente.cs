@@ -10,6 +10,11 @@ namespace The.Barber.Api.Models
         {
             Agendamento = new HashSet<Agendamento>();
         }
+
+        public string UsuarioId { get; set; }
+
+        public Usuario Usuario { get; set; }
+
         [Required]
         public int IdCliente { get; set; }
         [Required]
