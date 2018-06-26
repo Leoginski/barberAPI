@@ -28,7 +28,8 @@ namespace The.Barber.Api.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql("Server=localhost;User Id=root;Password=;Database=mydb");
+                optionsBuilder.UseMySql("Server=thebarber.mysql.database.azure.com;User Id=lucas@thebarber;Password=QuartetoFant4stic@;Database=thebarber");
+                //optionsBuilder.UseMySql("Server=localhost;User Id=root;Password=;Database=thebarber");
             }
         }
 
