@@ -1,0 +1,52 @@
+How-to
+
+AZURE COMMANDS - AZURE TERMINAL
+
+az group create --name myresourcegroup --location westus
+
+az mysql server create --resource-group myresourcegroup --name thebarber --location westus --admin-user lucas --admin-password QuartetoFant4stic@ --sku-name GP_Gen4_2 --version 5.7
+
+az mysql server firewall-rule create --resource-group myresourcegroup --server thebarber --name AllowAllIPs --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255
+
+az mysql server update --resource-group myresourcegroup --name thebarber --ssl-enforcement Disabled
+
+az mysql server show --resource-group myresourcegroup --name thebarber
+
+mysql -h thebarber.mysql.database.azure.com -u lucas@thebarber -p
+OU 
+MYSQL WORKBENCH
+
+
+--DELETE RESOUCES OR A SERVER ON AZURE
+az group delete --name myresourcegroup
+az mysql server delete --resource-group myresourcegroup --name mydemoserver
+
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////SECRETO/////,///////OU//////////////NÃO///////////////
+///////////////////////////////////////////////////////////////////////////////
+{
+  "administratorLogin": "lucas",
+  "earliestRestoreDate": "2018-06-25T23:57:19.350000+00:00",
+  "fullyQualifiedDomainName": "thebarber.mysql.database.azure.com",
+  "id": "/subscriptions/4df0a3e6-6bbe-4aa7-a6a9-2b5244c9a0a5/resourceGroups/myresourcegroup/providers/Microsoft.DBforMySQL/servers/thebarber",
+  "location": "westus",
+  "name": "thebarber",
+  "resourceGroup": "myresourcegroup",
+  "sku": {
+    "capacity": 2,
+    "family": "Gen4",
+    "name": "GP_Gen4_2",
+    "size": null,
+    "tier": "GeneralPurpose"
+  },
+  "sslEnforcement": "Disabled",
+  "storageProfile": {
+    "backupRetentionDays": 7,
+    "geoRedundantBackup": "Disabled",
+    "storageMb": 5120
+  },
+  "tags": null,
+  "type": "Microsoft.DBforMySQL/servers",
+  "userVisibleState": "Ready",
+  "version": "5.7"
+}
