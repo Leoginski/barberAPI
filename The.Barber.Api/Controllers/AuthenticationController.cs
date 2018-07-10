@@ -48,8 +48,35 @@ namespace The.Barber.Api.Controllers
                 return BadRequest(Errors.AddErrorToModelState("login falhou!", "senha ou nome de usuario errados.", ModelState));
             }
 
-            var jwt = await Tokens.GenerateJwt(identity, _jwtFactory, credentials.UserName, _jwtOptions, new JsonSerializerSettings { Formatting = Formatting.Indented });
-            return new OkObjectResult(jwt);
+            // verficar usuario no banco
+            var userToVerify = _mydbContext
+                                .Users
+                                    .Include(u => u.Barbeiro)
+                                    .Include(u => u.Cliente)
+                                    .Single(u => u.UserName == credentials.UserName);
+            //var userToVerify = await _userManager.FindByNameAsync(userName)
+
+            if (userToVerify == null) return BadRequest();
+
+
+            var perfil = userToVerify.Cliente != null ? "C" : "B";
+            var id = "";
+            //if (userToVerify.Cliente != null)
+            //{
+            //    id = userToVerify.Cliente.IdCliente.ToString();
+            //}
+            //if (userToVerify.Barbeiro != null)
+            //{
+            //    id = userToVerify.Barbeiro.IdBarbeiro.ToString();
+            //}
+            //if (id == "")
+            //{
+            id = userToVerify.Id;
+            //}
+
+
+            //var jwt = await Tokens.GenerateJwt(identity, _jwtFactory, credentials.UserName, _jwtOptions, new JsonSerializerSettings { Formatting = Formatting.Indented });
+            return new OkObjectResult(id);
         }
 
         private async Task<ClaimsIdentity> GetClaimsIdentity(string userName, string password)
@@ -69,6 +96,19 @@ namespace The.Barber.Api.Controllers
 
 
             var perfil = userToVerify.Cliente != null ? "C" : "B";
+            var id = "";
+            //if (userToVerify.Cliente != null)
+            //{
+            //    id = userToVerify.Cliente.IdCliente.ToString();
+            //}
+            //if (userToVerify.Barbeiro != null)
+            //{
+            //    id = userToVerify.Barbeiro.IdBarbeiro.ToString();
+            //}
+            //if (id == "")
+            //{
+                id = userToVerify.Id;
+            //}
 
             // verficar credenciais
             if (await _userManager.CheckPasswordAsync(userToVerify, password))

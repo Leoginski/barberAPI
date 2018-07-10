@@ -122,5 +122,13 @@ namespace The.Barber.Api.Controllers
         {
             return _context.Barbeiro.Any(e => e.IdBarbeiro == id);
         }
+
+        [HttpGet]
+        [Route("GetBarbeirosPorBarbearia/{id}")]
+        public IEnumerable<Barbeiro> GetBarbeiroPorBarbearia([FromRoute] int id)
+        {
+            return _context.Barbeiro.Include(x => x.Funcionarios)
+                                    .Where(x => x.Funcionarios.Any(y => y.BarbeariaIdBarbearia == id));
+        }
     }
 }

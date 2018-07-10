@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using The.Barber.Api.Data;
 using The.Barber.Api.Helpers;
 using The.Barber.Api.Models;
@@ -44,8 +45,19 @@ namespace The.Barber.Api.Controllers
 
             //await _mydbContext.Customers.AddAsync(new Customer { IdentityId = userIdentity.Id, Location = model.Location });
             await _mydbContext.SaveChangesAsync();
+            return Ok("Conta criada com sucesso");
+        }
 
-            return new OkObjectResult("Conta criada com sucesso");
+        [HttpGet]
+        public async Task<List<Usuario>> GetAll()
+        {
+            var result = _mydbContext
+                                .Users
+                                    .Include(u => u.Barbeiro)
+                                    .Include(u => u.Cliente)
+                                    .ToList();
+
+            return result;
         }
     }
 }

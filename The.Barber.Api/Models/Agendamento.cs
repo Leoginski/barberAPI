@@ -18,5 +18,8 @@ namespace The.Barber.Api.Models
         public Barbeiro BarbeiroIdBarbeiroNavigation { get; set; }
         public Cliente ClienteIdClienteNavigation { get; set; }
         public ICollection<Avaliacao> Avaliacao { get; set; }
+
+
+        public string IdUsuario { get; set; }
     }
 }

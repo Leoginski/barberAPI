@@ -52,6 +52,8 @@ namespace The.Barber.Api.Data
                     .HasColumnName("cliente_id_cliente")
                     .HasColumnType("int(11)");
 
+                entity.Ignore(e => e.IdUsuario);
+
                 entity.Property(e => e.BarbeiroIdBarbeiro)
                     .HasColumnName("barbeiro_id_barbeiro")
                     .HasColumnType("int(11)");
